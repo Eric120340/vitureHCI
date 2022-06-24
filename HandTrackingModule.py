@@ -54,6 +54,7 @@ def main():
         PosList = detector.findPosition(img)
 
         if len(PosList) != 0:
+            #cv2.circle(img, (PosList[8].cx, PosList[8].cy), (255, 255, 255), cv2.FILLED)
             print(PosList[8])
 
         cTime = time.time()
