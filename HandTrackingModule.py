@@ -42,30 +42,3 @@ class handDetector():
         return PosList
 
 
-def main():
-    pTime = 0
-    cTime = 0
-    cap = cv2.VideoCapture(0)
-    detector = handDetector()
-
-    while True:
-        success, img = cap.read()
-        img = detector.findHands(img)
-        PosList = detector.findPosition(img)
-
-        if len(PosList) != 0:
-            #cv2.circle(img, (PosList[8].cx, PosList[8].cy), (255, 255, 255), cv2.FILLED)
-            print(PosList[8])
-
-        cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
-
-        cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_DUPLEX, 3, (255, 0, 0), 3)
-
-        cv2.imshow("Webcam", img)
-        cv2.waitKey(1)
-
-
-if __name__ == "__main__":
-    main()
