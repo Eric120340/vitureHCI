@@ -2,7 +2,7 @@
 import cv2
 import time
 import mediapipe as mp
-import HandTrackingModule
+from cvzone.HandTrackingModule import HandDetector
 # 按 Shift+F10 执行或将其替换为您的代码。
 # 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
 
@@ -10,16 +10,12 @@ import HandTrackingModule
 pTime = 0
 cTime = 0
 cap = cv2.VideoCapture(0)
-detector = HandTrackingModule.handDetector()
+cap.set(3, 1280)
+cap.set(4, 720)
 
 while True:
     success, img = cap.read()
-    img = detector.findHands(img, draw=False)
-    PosList = detector.findPosition(img, draw=False)
 
-    if len(PosList) != 0:
-            #cv2.circle(img, (PosList[8].cx, PosList[8].cy), (255, 255, 255), cv2.FILLED)
-        print(PosList[8])
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
